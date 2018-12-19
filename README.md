@@ -7,7 +7,6 @@
 * [run-cloudformation.md](aws/cloudformation/run-cloudformation.md)
 
 ## ansible
-* [ansible] (https://github.com/Moon-Tae-Kwon/ansible)
+* [ansible](https://github.com/Moon-Tae-Kwon/ansible)
 
 ## nodejs
-* [nodejs-web]
