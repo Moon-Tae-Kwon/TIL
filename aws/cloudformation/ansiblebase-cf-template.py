@@ -1,13 +1,3 @@
-# run-cloudformation
-
-## Code Example
-
-* 템플릿용 파이썬 스크립트 작성을 위한 트로포스피어 사용 (작성자 환경은 python3.7)
-```local 터미널
-pip install troposphere # 필요시 ipaddress / ipify
-```
-* cloudformaion 설명 [sourcecode](helloworld-cf-template.py)
-```cloudformation
 """Generating CloudFormation template.
 트로포스피어 모듈로부터 여러 정의를 임포트 """
 from ipaddress import ip_network
@@ -24,8 +14,19 @@ from troposphere import (
     Ref,
     Template,
 )
-""" 신규 스크립트 작성시 코드의 나머지 부분을 쉽게 편집 할 수 있도록 첫 번째 변수를 정의 """
+""" 신규 스크립트 작성시 코드의 나머지 부분을 쉽게 편집 할 수 있도록 첫 번째 변수를 정의 
++ ansible-> 응용프로그램명을 정의한다."""
+ApplicationName = "helloworld"
 ApplicationPort = "3000"
+""" + ansible-> github 모듈사용을 위한 부분"""
+GithubAccount = "Moon-Tae-Kwon"
+GithubAnsibleURL = "https://github.com/{}/ansible".format(GithubAccount)
+
+AnsiblePullCmd = \
+    "/usr/local/bin/ansible-pull -U {} {}.yml -i localhost".format(
+        GithubAnsibleURL,
+        ApplicationName
+    )
 PublicCidrIp = str(ip_network(get_ip()))
 
 t = Template()
@@ -39,7 +40,7 @@ t.add_parameter(Parameter(
     Type="AWS::EC2::KeyPair::KeyName",
     ConstraintDescription="must be the name of an existing EC2 KeyPair.",
 ))
-""" 보안 그룹 포트 3000은 앞에서 선언된 ApplicationPort 변수에 정의됐다.
+""" 보안 그룹 포트 22포트는 작업한 대상 PC의 공인 IP만 허용, 3000은 앞에서 선언된 ApplicationPort 변수에 정의됐다.
 이번에 정의된 정보는 이전과 같이 매개변수가 아닌 리소스이다.
 따라서 add_resource() 함수를 이용해 새 리소스를 추가할 것이다. """
 t.add_resource(ec2.SecurityGroup(
@@ -61,13 +62,23 @@ t.add_resource(ec2.SecurityGroup(
     ],
 ))
 """ EC2 로그인 이후 작업을 위해 EC2가 제공하는 UserData 기능을 이용할 것이다. (가상 머신 생성 시 단 한번 싱행되는 일련의 명령어를 제공하는 UserData 매개변수)
-base64로 인코딩해 API 호출에 추가해야 한다는 제약 사항이 존재 """
+base64로 인코딩해 API 호출에 추가해야 한다는 제약 사항이 존재 (아래 내용 삭제)
 ud = Base64(Join('\n', [
     "#!/bin/bash",
     "sudo yum install --enablerepo=epel -y nodejs",
-    "wget https://github.com/Moon-Tae-Kwon/TIL/blob/master/node/helloworld.js -O /home/ec2-user/helloworld.js",
-    "wget https://github.com/Moon-Tae-Kwon/TIL/blob/master/node/helloworld.conf -O /etc/init/helloworld.conf",
+    "wget https://raw.githubusercontent.com/Moon-Tae-Kwon/TIL/master/node/helloworld.js -O /home/ec2-user/helloworld.js",
+    "wget https://raw.githubusercontent.com/Moon-Tae-Kwon/TIL/master/node/helloworld.conf -O /etc/init/helloworld.conf",
     "sudo start helloworld"
+]))
+"""
+"""+ ansible-> 새로 추가된 UserData 내용 깃 앤서블 설치 및 Ansible PullCmd 변수가 포함된
+명령어를 실행하고 매 10분 마다 명령어를 다시 실행 하도록 구성된 내용"""
+ud = Base64(Join('\n', [
+    "#!/bin/bash",
+    "yum install --enablerepo=epel -y git",
+    "pip install ansible",
+    AnsiblePullCmd,
+    "echo '*/10 * * * * {}' > /etc/cron.d/ansible-pull".format(AnsiblePullCmd)
 ]))
 """ 테스크를 위한 하드 코딩된 내용으로 진행
 클라우드포메이션에서는 Ref 키워드를 사용해 템플릿의 기존 하위 영역을 참조할 수 있다.
@@ -99,31 +110,3 @@ t.add_output(Output(
 ))
 
 print (t.to_json())
-```
-* cloudformation stack 생성 및 확인.
-![cf-stack-1](/TIL/aws/images/cf-stack-1.png)
-![cf-stack-2](/TIL/aws/images/cf-stack-2.png)
-![cf-stack-3](/TIL/aws/images/cf-stack-3.png)
-![cf-stack-4](/TIL/aws/images/cf-stack-4.png)
-
-* awscli 를 이용한 방법
-```awscli
-aws cloudformation create-stack --capabilities CAPABILITY_IAM --stack-name ansible --template-body file://helloworld-cf-v2.template --parameters ParameterKey=KeyPair,ParameterValue=EffectiveDevOpsAWS
-```
-
-* ansible + cloudformation (ansiblebase-cf-template)
-```
-python3 ansiblebase-cf-template.py > ansiblebase-cf-template
-```
-* cloudformation stack 실행
-```
-aws cloudformation create-stack --capabilities CAPABILITY_IAM --stack-name HelloWorld --template-body file://ansiblebase-cf-template --parameters ParameterKey=KeyPair,ParameterValue=EffectiveDevOpsAWS
-```
-* 변경된 웹페이지 확인
-```
-curl 52.79.227.132:3000
-```
-* cloudformation stack 삭제
-```
-aws cloudformation delete-stack --stack-name HelloWorld
-```
