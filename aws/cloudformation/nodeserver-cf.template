@@ -24,7 +24,7 @@
                             ]
                         },
                         ":",
-                        "8080"
+                        "3000"
                     ]
                 ]
             }
@@ -55,7 +55,7 @@
                     "Statement": [
                         {
                             "Action": [
-                                "codepipeline:*"
+                                "s3:*"
                             ],
                             "Effect": "Allow",
                             "Resource": [
@@ -64,7 +64,7 @@
                         }
                     ]
                 },
-                "PolicyName": "AllowCodePipeline",
+                "PolicyName": "AllowS3",
                 "Roles": [
                     {
                         "Ref": "Role"
@@ -95,7 +95,7 @@
         },
         "SecurityGroup": {
             "Properties": {
-                "GroupDescription": "Allow SSH and TCP/8080 access",
+                "GroupDescription": "Allow SSH and TCP/3000 access",
                 "SecurityGroupIngress": [
                     {
                         "CidrIp": "222.121.93.72/32",
@@ -105,9 +105,9 @@
                     },
                     {
                         "CidrIp": "0.0.0.0/0",
-                        "FromPort": "8080",
+                        "FromPort": "3000",
                         "IpProtocol": "tcp",
-                        "ToPort": "8080"
+                        "ToPort": "3000"
                     }
                 ]
             },
@@ -136,8 +136,8 @@
                                 "#!/bin/bash",
                                 "yum install --enablerepo=epel -y git",
                                 "pip install ansible",
-                                "/usr/local/bin/ansible-pull -U https://github.com/Moon-Tae-Kwon/ansible jenkins.yml -i localhost",
-                                "echo '*/10 * * * * /usr/local/bin/ansible-pull -U https://github.com/Moon-Tae-Kwon/ansible jenkins.yml -i localhost' > /etc/cron.d/ansible-pull"
+                                "/usr/local/bin/ansible-pull -U https://github.com/Moon-Tae-Kwon/ansible nodeserver.yml -i localhost",
+                                "echo '*/10 * * * * /usr/local/bin/ansible-pull -U https://github.com/Moon-Tae-Kwon/ansible nodeserver.yml -i localhost' > /etc/cron.d/ansible-pull"
                             ]
                         ]
                     }
