@@ -78,7 +78,7 @@ ud = Base64(Join('\n', [
     "yum install --enablerepo=epel -y git",
     "pip install ansible",
     AnsiblePullCmd,
-    "echo '*/10 * * * * {}' > /etc/cron.d/ansible-pull".format(AnsiblePullCmd)
+    "echo '*/10 * * * * root {}' > /etc/cron.d/ansible-pull".format(AnsiblePullCmd)
 ]))
 """ 테스크를 위한 하드 코딩된 내용으로 진행
 클라우드포메이션에서는 Ref 키워드를 사용해 템플릿의 기존 하위 영역을 참조할 수 있다.
