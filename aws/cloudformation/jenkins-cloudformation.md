@@ -177,7 +177,7 @@ aws cloudformation describe-stacks --stack-name jenkins --query 'Stacks[0].Outpu
     * top -c 명령어를 통한 기존의 실행되던 PID삭제 처리 및 수동 실행 이후 cron.d 폴더에 등록하는 ansible-pull echo 명령어도 수동 실행
 * linux cron.d echo 동작시에 입력되는 코드는 아래의 코드이며 cron이 동작할 경우에는 bad username 의 error log 발생
 ```
-echo '*/10 * * * * /usr/local/bin/ansible-pull -U https://github.com/Moon-Tae-Kwon/ansible jenkins.yml -i localhost' > /etc/cron.d/ansible-pull
+echo '*/10 * * * * root /usr/local/bin/ansible-pull -U https://github.com/Moon-Tae-Kwon/ansible jenkins.yml -i localhost' > /etc/cron.d/ansible-pull
 ```
 * 위의 부분으로 jnekins 실행결과 버전이슈로 Credentials 메뉴는 확인이 불거능 해당 메뉴는 github 의 token을 사용하기위해 설치 필요
     * jenkisn version 업데이트는 진행 방법은 아래와 같이 진행
