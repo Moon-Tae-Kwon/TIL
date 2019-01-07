@@ -10,8 +10,8 @@
     2. global credentials
     3. username with password / global / git사용자명 / token 입력
 4. jenkins 새작업 등록
-![jenkins-setup-1](/TIL/images/jenkins-setup-1.png)
-![jenkins-setup-2](/TIL/images/jenkins-setup-2.png)
+![jenkins-setup-1](/images/jenkins-setup-1.png)
+![jenkins-setup-2](/images/jenkins-setup-2.png)
 * helloworld 응용프로그램 구현하기 (사전에 생성한 github repo) [helloworld-github](https://github.com/Moon-Tae-Kwon/helloworld)
     * git clone https://github.com/Moon-Tae-Kwon/helloworld.git
     * cd helloworld

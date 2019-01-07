@@ -192,5 +192,5 @@ yum install java-1.8.0-openjdk # rodhet 계열이라 java 1.8 버전 다운로�
 alternatives --config java # java 1.7 버전에서 java 1.8 버전으로 교체
 /etc/rc.d/init.d/jenkins restart #정상 구동 확인.
 ```
-* [CI 준비](/TIL/jenkins/jenkins-cloudformation-setup.md)
+* [CI 준비](/jenkins/jenkins-cloudformation-setup.md)
 

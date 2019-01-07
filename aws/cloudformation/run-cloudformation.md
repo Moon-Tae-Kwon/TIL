@@ -101,10 +101,10 @@ t.add_output(Output(
 print (t.to_json())
 ```
 * cloudformation stack 생성 및 확인.
-![cf-stack-1](/TIL/images/cf-stack-1.png)
-![cf-stack-2](/TIL/images/cf-stack-2.png)
-![cf-stack-3](/TIL/images/cf-stack-3.png)
-![cf-stack-4](/TIL/images/cf-stack-4.png)
+![cf-stack-1](/images/cf-stack-1.png)
+![cf-stack-2](/images/cf-stack-2.png)
+![cf-stack-3](/images/cf-stack-3.png)
+![cf-stack-4](/images/cf-stack-4.png)
 
 * awscli 를 이용한 방법
 ```awscli

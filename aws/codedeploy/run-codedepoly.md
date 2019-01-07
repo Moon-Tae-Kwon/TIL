@@ -11,7 +11,7 @@ iam attach-role-policy --role-name CodeDeployServiceRole --policy-arn arn:aws:ia
 ```
 * codedeploy setup
 
-![codedeploy-setup-1](/TIL/images/codedeploy-setup-1.png)
-![codedeploy-setup-2](/TIL/images/codedeploy-setup-2.png)
-![codedeploy-setup-3](/TIL/images/codedeploy-setup-3.png)
-![codedeploy-setup-4](/TIL/images/codedeploy-setup-4.png)
+![codedeploy-setup-1](/images/codedeploy-setup-1.png)
+![codedeploy-setup-2](/images/codedeploy-setup-2.png)
+![codedeploy-setup-3](/images/codedeploy-setup-3.png)
+![codedeploy-setup-4](/images/codedeploy-setup-4.png)
