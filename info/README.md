@@ -168,6 +168,13 @@ html 만으로는 할 수 없는 데이터베이스 조회나 다양한 로직�
 
 * tcp ip close
 ![link](/images/tcp-cloes1.png)
+1. 통신을 종료하고자 하는 Client가 서버에게 FIN 패킷을 보내고 자신은 FIN_WAIT_1 상태로 대기한다.
+2. FIN 패킷을 받은 서버는 해당 포트를 CLOSE_WAIT으로 바꾸고 잘 받았다는 ACK 를 Client에게 전하고 ACK를 받은 Client는 상태를 FIN_WAIT_2로 변경한다.
+그와 동시에 Server에서는 해당 포트에 연결되어 있는 Application에게 Close()를 요청한다.
+3. Close() 요청을 받은 Application은 종료 프로세스를 진행시켜 최종적으로 close()가 되고 server는 FIN 패킷을 Client에게 전송 후 자신은 LAST_ACK 로 상태를 바꾼다.
+4. FIN_WAIT_2 에서 Server가 연결을 종료했다는 신호를 기다리다가 FIN 을 받으면 받았다는 ACK를 Server에 전송하고 자신은 TIME_WAIT 으로 상태를 바꾼다. (TIME_WAIT 에서 일정 시간이 지나면 CLOSED 되게 된다.)
+최종 ACK를 받은 서버는 자신의 포트도 CLOSED로 닫게 된다.
+
 ![link](/images/tcp-cloes2.png)
 
 * CLOSE_WAIT 원인
