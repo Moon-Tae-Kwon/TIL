@@ -167,7 +167,8 @@ html 만으로는 할 수 없는 데이터베이스 조회나 다양한 로직�
         * apache 의 경우 Prefork MPM방식으로 요청하나당 프로세스 및 쓰레드 기반으로 동작 (apache 2.4.X 부처는  event MPM 방식이 기본 모듈이지만 자원사용 측면에서는 nginx 보다 부족)
 
 * tcp ip close
-[link](http://hyeonstorage.tistory.com/287)
+![link](/images/tcp-cloes1.png)
+![link](/images/tcp-cloes2.png)
 
 * CLOSE_WAIT 원인
 ```
