@@ -221,7 +221,7 @@ net.ipv4.tcp_tw_reuse = 1
 ```
 drwxr-xr-x  2  root  root  4096 Apr 22 16:59 conory
 (소유자 : rwx , 그룹 : r-x , 공개 : r-x)
-r -> 읽기 / 
+r -> 읽기 / w -> 쓰기 / -> x 실행
 
 파일Type 퍼미션정보 링크수 소유자 소유그룹 용량 생성날짜 파일이름
 파일 Type : "d" -> 디렉토리 , "l" -> 링크파일 , "-" -> 일반파일 등등..
