@@ -27,3 +27,26 @@
     - 기억자치의 접근 시간을 효율적으로 높일 수 있으므로 캐시 기억장치, 고속 DMA 전송등에 많이 사용
     - CPU가 버스를 통해 주소를 전달하는 속도는 빠름
     - 메모리 모듈의 처리 속도가 느리기 떄문에 병행접근이 가능
+
+- IC 성능 평가요소
+    - 전파 지연 시간, 전력 소모, Fan Out, 잡음 허용치
+
+- JK 플립플롭
+    - 상태 무 ,공,일,보
+
+- 매핑 프로세스의 종류
+    - Direct (직접)
+    - Associative (어소시에이티브)
+    - Set-Associative (세트-어소시에이티브)
+
+- 버스 사용 우선순위 (가변우선 순위 방식)
+    - 회전 우선순위 (Rotating) / 임의 우선 순위 (Random Priorty) / 동등 우선순위 (Equal Priority) / 최소-최근 사용 (Least-recently used)
+
+- SSD (Solid State Drive) 방식
+    - SLC(Single Level Cell) = 셀 당 1bit
+    - MLC(Multi Level Cell) = 셀 당 2bit
+    - TLC(Triple Level Cell) = 셀 당 3bit
+
+- CPU 메이저 상태
+    - Fetch, Indirect, Execute, Interrupt (인출, 간접, 실행, 인터럽트)
+

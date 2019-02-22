@@ -57,6 +57,10 @@
         - U 프레임: Unnumbered 프레임 제어부가 11로 시작하는 프레임으로, 링크 동작 모드 설정과 관리를 함
     - 정보부 (Information Field): 실제 정보 메시지가 들어 있는 부분으로, 송. 수신 측 간의 협의에 따라 길이와 구성이 정해짐
     - FCS(Frame Check Sequence Field): 프레임 내용에 대한 오류 검출을 위해 사용되는 부분으로, 일반적으로 CRC 코드가 사용 됨.
+    - 동작 모드
+        - NRM = Normal Response Mode
+        - ARM = Asynchronous Response Mode
+        - ABM = Asynchronous Balanced Mode
 
 - IPv4를 IPv6로 전환하는 전략
     - Dual Stack
@@ -104,3 +108,8 @@
     - DLE(Data Link Escape): 전송 제어 문자 앞에 삽입하여 전송 데어 문자임을 알림
     - ACK(ACKnowledge): 수신된 메시지에 대한 긍정 응답
     - NAK(Negative Acknowledge): 수신된 메시지에 대한 부정 응답
+
+- 라우팅 프로토콜
+
+- IEEE 802의 주요 표준 규격
+
