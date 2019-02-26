@@ -47,6 +47,20 @@
     - MLC(Multi Level Cell) = 셀 당 2bit
     - TLC(Triple Level Cell) = 셀 당 3bit
 
-- CPU 메이저 상태
+- CPU 메이저 상태 (마이크로 사이클)
     - Fetch, Indirect, Execute, Interrupt (인출, 간접, 실행, 인터럽트)
+
+- 핀 수를 구하기
+    - Address 핀 수: 워드의 개수와 관련이 있다, 워드의 개수가 1024일 경우에 2^10 즉 10개의 Address 핀이 필요.
+    - data 핀 수: data 핀 수는 워드의 크기와 동일 8bit 일 경우 8개의 핀이 필요.
+    - chip select bit: 선택할지 말지 결정하는 것이므로 1개의 핀만 있으먄 된다.
+
+- 그레이코드 = 비가중 코드
+    - 2진코드 변환 앞에 숫자는 그대로 사용하고 XOR 연산
+
+- 접근 방식에 따른 분류
+
+- 연산자 기능 
+
+- 인터럽트 동작 원리
 
